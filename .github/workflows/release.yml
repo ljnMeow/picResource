@@ -13,7 +13,7 @@ jobs:
         id: get_release_id
         uses: actions/github-script@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PIC_RESOURCE_TOKEN }}
           script: |
             const { data: releases } = await github.repos.listReleases({
               owner: context.repo.owner,
@@ -32,7 +32,7 @@ jobs:
         if: steps.get_release_id.outputs.release_id
         uses: actions/github-script@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PIC_RESOURCE_TOKEN }}
           script: |
             await github.repos.updateRelease({
               owner: context.repo.owner,
@@ -47,7 +47,7 @@ jobs:
         if: !steps.get_release_id.outputs.release_id
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PIC_RESOURCE_TOKEN }}
         with:
           tag_name: v1.0.0
           release_name: v1.0.0
