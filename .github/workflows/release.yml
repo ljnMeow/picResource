@@ -34,6 +34,13 @@ jobs:
         with:
           github-token: ${{ secrets.PIC_RESOURCE_TOKEN }}
           script: |
+            await github.git.updateRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v1.0.0',
+              sha: context.sha
+            })
+            
             await github.repos.updateRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
