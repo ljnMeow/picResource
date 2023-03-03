@@ -40,7 +40,7 @@ jobs:
               release_id: ${{ steps.get_release_id.outputs.release_id }},
               tag_name: 'v1.0.0',
               name: 'v1.0.0',
-              body: 'This is the release body for v1.0.0'
+              body: 'This is the release update body for v1.0.0'
             })
       - name: Create Release
         id: create_release
