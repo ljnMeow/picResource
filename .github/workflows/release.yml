@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Get release ID
+      - name: Get Release ID
         id: get_release_id
         uses: actions/github-script@v4
         with:
@@ -27,7 +27,7 @@ jobs:
               console.log('No release found')
               core.setOutput('release_id', '')
             }
-      - name: Create or update release
+      - name: Create or Update Release
         if: steps.get_release_id.outputs.release_id
         uses: actions/github-script@v4
         with:
@@ -43,7 +43,7 @@ jobs:
             })
         else:
           - name: Create Release
-            uses: actions/create-release@v1.0.0
+            uses: actions/create-release@v1
             env:
               GITHUB_TOKEN: ${{ secrets.PIC_RESOURCE_TOKEN }}
             with:
